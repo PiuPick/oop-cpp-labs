@@ -43,11 +43,11 @@ int main()
             {
                 double x, bottom, top;
                 cout << "Введите x: ";
-                if (!(cin >> x)) break;
+                cin >> x;
                 cout << "Введите bottom: ";
-                if (!(cin >> bottom)) break;
+                cin >> bottom;
                 cout << "Введите top: ";
-                if (!(cin >> top)) break;
+                cin >> top;
 
                 if (bottom > top)
                 {
@@ -71,14 +71,14 @@ int main()
                 {
                     int a, b;
                     cout << "Введите два целых числа: ";
-                    if (!(cin >> a >> b)) break;
+                    cin >> a >> b;
                     cout << "Минимальное: " << minValue(a, b) << "\n";
                 }
                 else if (typeChoice == 'f')
                 {
                     float a, b;
                     cout << "Введите два вещественных числа: ";
-                    if (!(cin >> a >> b)) break;
+                    cin >> a >> b;
                     cout << "Минимальное: " << minValue(a, b) << "\n";
                 }
                 else
@@ -92,7 +92,7 @@ int main()
             {
                 long long num;
                 cout << "Введите целое число: ";
-                if (!(cin >> num)) break;
+                cin >> num;
                 cout << "Количество знаков: " << order(num) << "\n";
                 break;
             }
@@ -114,7 +114,7 @@ int main()
             {
                 int num;
                 cout << "Введите целое число: ";
-                if (!(cin >> num)) break;
+                cin >> num;
                 cout << (isPrime(num) ? "Простое" : "Не простое") << "\n";
                 break;
             }
@@ -139,13 +139,6 @@ int main()
 
         default:
             cout << "Неизвестная команда\n";
-        }
-
-        if (!cin)
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "Ошибка ввода\n";
         }
     }
 
