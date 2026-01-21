@@ -1,13 +1,13 @@
-#include <iostream>
-#include <climits>
-#include <windows.h>
+#include <iostream> // Библиотека для ввода-вывода
+#include <climits> // Библиотека для целочисленных типов (INT_MIN, INT_MAX и тд.)
+#include <windows.h> // Для установки кодировки консоли
 
 using namespace std;
 
 bool belongsToInterval(double x, double bottom, double top);
 int minValue(int a, int b);
 float minValue(float a, float b);
-int order(int number);
+int order(long long number);
 void showTypeInfo();
 int getLetterCode(char symbol);
 bool isPrime(int n);
@@ -35,7 +35,7 @@ int main()
         cout << " e - Выход из программы\n";
         cout << "> Ваш выбор: ";
 
-        cin >> ws >> userChoice;
+        cin >> userChoice;
 
         switch (userChoice)
         {
@@ -65,7 +65,7 @@ int main()
             {
                 char typeChoice;
                 cout << "Выберите тип (i - int, f - float): ";
-                cin >> ws >> typeChoice;
+                cin >> typeChoice;
 
                 if (typeChoice == 'i')
                 {
@@ -90,7 +90,7 @@ int main()
 
         case 'o':
             {
-                int num;
+                long long num;
                 cout << "Введите целое число: ";
                 if (!(cin >> num)) break;
                 cout << "Количество знаков: " << order(num) << "\n";
@@ -105,7 +105,7 @@ int main()
             {
                 char symbol;
                 cout << "Введите символ: ";
-                cin >> ws >> symbol;
+                cin >> symbol;
                 cout << "Код символа: " << getLetterCode(symbol) << "\n";
                 break;
             }
@@ -167,18 +167,15 @@ float minValue(float a, float b)
     return a < b ? a : b;
 }
 
-int order(int number)
+int order(long long number)
 {
     if (number == 0) return 1;
 
-    long long n = number;
-    if (n < 0) n = -n;
-
     int count = 0;
-    while (n > 0)
+    while (number != 0)
     {
         ++count;
-        n /= 10;
+        number /= 10;
     }
     return count;
 }
@@ -213,7 +210,7 @@ bool isPrime(int n)
     if (n == 2) return true;
     if (n % 2 == 0) return false;
 
-    for (int i = 3; i <= n / i; i += 2)
+    for (int i = 3; i < n; i += 2)
     {
         if (n % i == 0) return false;
     }
