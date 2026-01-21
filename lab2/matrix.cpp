@@ -58,10 +58,14 @@ void printMatrix(const Matrix& m)
         return;
     }
 
-    for (int i = 0; i < m.cols; ++i)
+    int** p = m.data;
+    for (int i = 0; i < m.rows; ++i)
     {
-        for (int j = 0; j < m.rows; ++j)
-            cout << m.data[i][j] << " ";
+        int* row = *(p + i);
+
+        int* end = row + m.cols;
+        for (int* cur = row; cur < end; ++cur)
+            cout << *cur << " ";
         cout << endl;
     }
 }
@@ -79,7 +83,7 @@ bool multiplyMatrices(const Matrix& A, const Matrix& B, Matrix& C)
     for (int i = 0; i < A.rows; ++i)
         for (int j = 0; j < B.cols; ++j)
         {
-            long long sum = 0;
+            int sum = 0;
             for (int k = 0; k < A.cols; ++k)
                 sum += A.data[i][k] * B.data[k][j];
             C.data[i][j] = sum;
@@ -113,6 +117,7 @@ void testScenario()
     printMatrix(B);
 
     cout << "A * B:\n";
+    multiplyMatrices(A, B, C);
     printMatrix(C);
 
     freeMatrix(A);

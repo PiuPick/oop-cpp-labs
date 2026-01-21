@@ -11,6 +11,7 @@ int main()
     cout << "Вариант V = int('P') % 8 = " << 'P' % 8 << "\n";
     cout << "Операция: Матричное умножение\n";
 
+    Matrix A, B, C;
     bool isRunning = true;
 
     while (isRunning)
@@ -23,7 +24,6 @@ int main()
         cout << "0. Выход из программы\n";
         cout << "> Ваш выбор: ";
 
-        Matrix A, B, C;
         char userChoice;
         cin >> userChoice;
 
@@ -39,8 +39,8 @@ int main()
                 cout << "Внесите количество строк и колонок матрицы B: ";
                 if (!(cin >> r2 >> c2)) break;
 
-                if (allocateMatrix(A, r1, c1) &&
-                    allocateMatrix(B, r2, c2))
+                if (!allocateMatrix(A, r1, c1) ||
+                    !allocateMatrix(B, r2, c2))
                 {
                     cout << "Ошибка выделения памяти для матриц\n";
                     freeMatrix(A);
