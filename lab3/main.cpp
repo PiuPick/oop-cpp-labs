@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool inputPoints(Point* points, int count);
+void inputPoints(Point* points, int count);
 
 int main()
 {
@@ -38,19 +38,15 @@ int main()
             {
                 int n;
                 cout << "Введите количество точек: ";
-                if (!(cin >> n) || n <= 0)
+                cin >> n;
+                if (n <= 0)
                 {
                     cout << "Некорректное количество точек\n";
                     break;
                 }
 
                 Point* pts = new Point[n];
-                if (!inputPoints(pts, n))
-                {
-                    cout << "Ошибка ввода точек\n";
-                    delete[] pts;
-                    break;
-                }
+                inputPoints(pts, n);
 
                 printPoints(pts, n);
                 cout << (inLine(pts, n)
@@ -72,16 +68,12 @@ int main()
                 }
 
                 Point* pts = new Point[n];
-                if (!inputPoints(pts, n))
-                {
-                    cout << "Ошибка ввода точек\n";
-                    delete[] pts;
-                    break;
-                }
+                inputPoints(pts, n);
 
                 double R;
                 cout << "Введите радиус R: ";
-                if (!(cin >> R) || R < 0)
+                cin >> R;
+                if (R < 0)
                 {
                     cout << "Некорректный радиус\n";
                     delete[] pts;
@@ -104,11 +96,7 @@ int main()
         case '3':
             {
                 Point pts[4];
-                if (!inputPoints(pts, 4))
-                {
-                    cout << "Ошибка ввода точек\n";
-                    break;
-                }
+                inputPoints(pts, 4);
 
                 Trapeze t;
                 printPoints(pts, 4);
@@ -135,31 +123,18 @@ int main()
         default:
             cout << "Неизвестная команда\n";
         }
-
-        if (!cin)
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "Ошибка ввода\n";
-        }
     }
 
     return 0;
 }
 
-bool inputPoints(Point* points, int count)
+void inputPoints(Point* points, int count)
 {
     for (int i = 0; i < count; ++i)
     {
         cout << "Введите точку " << i + 1 << " (x y): ";
         double x, y;
-        if (!(cin >> x >> y))
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            return false;
-        }
+        cin >> x >> y;
         points[i] = Point(x, y);
     }
-    return true;
 }
