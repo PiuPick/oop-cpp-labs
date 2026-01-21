@@ -34,10 +34,10 @@ int main()
                 int r1, c1, r2, c2;
 
                 cout << "Внесите количество строк и колонок матрицы A: ";
-                if (!(cin >> r1 >> c1)) break;
+                cin >> r1 >> c1;
 
                 cout << "Внесите количество строк и колонок матрицы B: ";
-                if (!(cin >> r2 >> c2)) break;
+                cin >> r2 >> c2;
 
                 if (!allocateMatrix(A, r1, c1) ||
                     !allocateMatrix(B, r2, c2))
@@ -97,13 +97,6 @@ int main()
 
         default:
             cout << "Неизвестная команда\n";
-        }
-
-        if (!cin)
-        {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "Ошибка ввода\n";
         }
     }
 

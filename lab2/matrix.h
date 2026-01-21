@@ -9,9 +9,7 @@ struct Matrix
     int cols;
     int** data;
 
-    Matrix() : rows(0), cols(0), data(nullptr)
-    {
-    }
+    Matrix() : rows(0), cols(0), data(nullptr) {}
 };
 
 void freeMatrix(Matrix& m);

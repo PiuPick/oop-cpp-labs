@@ -40,12 +40,7 @@ bool inputMatrix(Matrix& m)
 
     for (int i = 0; i < m.rows; ++i)
         for (int j = 0; j < m.cols; ++j)
-            if (!(cin >> m.data[i][j]))
-            {
-                cin.clear();
-                cin.ignore(10000, '\n');
-                return false;
-            }
+            cin >> m.data[i][j];
     return true;
 }
 
@@ -64,8 +59,10 @@ void printMatrix(const Matrix& m)
         int* row = *(p + i);
 
         int* end = row + m.cols;
+
         for (int* cur = row; cur < end; ++cur)
             cout << *cur << " ";
+
         cout << endl;
     }
 }
