@@ -17,10 +17,9 @@ int main()
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
 
-    bool isRunning = true;
-    char userChoice;
-
     cout << "=== Практическая работа №1 ===\n";
+
+    bool isRunning = true;
 
     while (isRunning)
     {
@@ -35,6 +34,7 @@ int main()
         cout << " e - Выход из программы\n";
         cout << "> Ваш выбор: ";
 
+        char userChoice;
         cin >> userChoice;
 
         switch (userChoice)
@@ -152,21 +152,25 @@ int main()
     return 0;
 }
 
+// Функция проверки принадлежности числа интервалу [bottom, top]
 bool belongsToInterval(double x, double bottom, double top)
 {
     return x >= bottom && x <= top;
 }
 
+// Функции нахождения минимального значения из двух аргументов
 int minValue(int a, int b)
 {
     return a < b ? a : b;
 }
 
+// Перегрузка для типа float
 float minValue(float a, float b)
 {
     return a < b ? a : b;
 }
 
+// Функция подсчёта количества знаков в числе
 int order(long long number)
 {
     if (number == 0) return 1;
@@ -180,6 +184,7 @@ int order(long long number)
     return count;
 }
 
+// Функция вывода информации по примитивным типам
 void showTypeInfo()
 {
     cout << "char: size=" << sizeof(char)
@@ -199,11 +204,13 @@ void showTypeInfo()
         << " max=" << LLONG_MAX << "\n";
 }
 
+// Функция получения числового кода символа
 int getLetterCode(char symbol)
 {
     return static_cast<unsigned char>(symbol);
 }
 
+// Функция проверки числа на простоту
 bool isPrime(int n)
 {
     if (n <= 1) return false;
