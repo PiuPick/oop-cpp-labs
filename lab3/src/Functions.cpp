@@ -81,11 +81,16 @@ bool getFigure(Point points[], Trapeze& figure)
                 points[i].getY() == points[j].getY())
                 return false;
 
-    // проверка наличия параллельных сторон
-    bool isTrapeze = areParallel(points[0], points[1], points[2], points[3]) ||
-        areParallel(points[1], points[2], points[3], points[0]);
+    // Проверка параллельности сторон
+    int parallelCount = 0;
 
-    if (!isTrapeze)
+    if (areParallel(points[0], points[1], points[2], points[3])) ++parallelCount;
+    if (areParallel(points[1], points[2], points[3], points[0])) ++parallelCount;
+    if (areParallel(points[0], points[3], points[1], points[2])) ++parallelCount;
+    if (areParallel(points[0], points[2], points[1], points[3])) ++parallelCount;
+
+    // Для трапеции должно быть ровно 1 пара параллельных сторон
+    if (parallelCount != 1)
         return false;
 
     figure = Trapeze(points[0], points[1], points[2], points[3]);
