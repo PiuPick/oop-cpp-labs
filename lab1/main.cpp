@@ -11,43 +11,51 @@ int order(long long number);
 void showTypeInfo();
 int getLetterCode(char symbol);
 bool isPrime(int n);
+bool isValidInput();
 
 int main()
 {
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
 
-    cout << "=== Практическая работа №1 ===\n";
+    cout << "=== Практическая работа №1 ===" << endl;
 
     bool isRunning = true;
 
     while (isRunning)
     {
-        cout << "\nНажмите клавишу для проверки функции:\n";
-        cout << " i - Принадлежность числа интервалу\n";
-        cout << " m - Минимальное значение из двух аргументов\n";
-        cout << " o - Количество знаков числа\n";
-        cout << " t - Информация по примитивным типам\n";
-        cout << " c - Числовой код символа\n";
-        cout << " p - Проверка числа на простоту\n";
-        cout << " a - Тестовые сценарии\n";
-        cout << " e - Выход из программы\n";
+        cout << "\nНажмите клавишу для проверки функции:" << endl;
+        cout << " i - Принадлежность числа интервалу" << endl;
+        cout << " m - Минимальное значение из двух аргументов" << endl;
+        cout << " o - Количество знаков числа" << endl;
+        cout << " t - Информация по примитивным типам" << endl;
+        cout << " c - Числовой код символа" << endl;
+        cout << " p - Проверка числа на простоту" << endl;
+        cout << " a - Тестовые сценарии" << endl;
+        cout << " e - Выход из программы" << endl;
         cout << "> Ваш выбор: ";
 
         char userChoice;
         cin >> userChoice;
+        isValidInput();
 
         switch (userChoice)
         {
         case 'i':
             {
                 double x, bottom, top;
-                cout << "Введите x: ";
+
+                cout << "Введите x=";
                 cin >> x;
-                cout << "Введите bottom: ";
+                isValidInput();
+
+                cout << "Введите bottom=";
                 cin >> bottom;
-                cout << "Введите top: ";
+                isValidInput();
+
+                cout << "Введите top=";
                 cin >> top;
+                isValidInput();
 
                 if (bottom > top)
                 {
@@ -56,8 +64,9 @@ int main()
                     top = tmp;
                 }
 
-                cout << (belongsToInterval(x, bottom, top) ? "Принадлежит" : "Не принадлежит")
-                    << " интервалу [" << bottom << ", " << top << "]\n";
+                cout << "Число x=" << x
+                << (belongsToInterval(x, bottom, top) ? " принадлежит" : " не принадлежит")
+                << " интервалу [" << bottom << ", " << top << "]" << endl;
                 break;
             }
 
@@ -66,34 +75,45 @@ int main()
                 char typeChoice;
                 cout << "Выберите тип (i - int, f - float): ";
                 cin >> typeChoice;
+                isValidInput();
 
                 if (typeChoice == 'i')
                 {
                     int a, b;
-                    cout << "Введите два целых числа: ";
-                    cin >> a >> b;
-                    cout << "Минимальное: " << minValue(a, b) << "\n";
+                    cout << "Введите целое число a=";
+                    cin >> a;
+                    isValidInput();
+
+                    cout << "Введите целое число b=";
+                    cin >> b;
+                    isValidInput();
+
+                    cout << "Минимальное из чисел: " << minValue(a, b) << endl;
                 }
                 else if (typeChoice == 'f')
                 {
                     float a, b;
-                    cout << "Введите два вещественных числа: ";
-                    cin >> a >> b;
-                    cout << "Минимальное: " << minValue(a, b) << "\n";
+                    cout << "Введите вещественное число a=";
+                    cin >> a;
+                    isValidInput();
+
+                    cout << "Введите вещественное число b=";
+                    cin >> b;
+                    isValidInput();
+
+                    cout << "Минимальное из чисел: " << minValue(a, b) << endl;
                 }
                 else
-                {
-                    cout << "Ошибка выбора типа\n";
-                }
+                    cout << "Ошибка выбора типа" << endl;
                 break;
             }
 
         case 'o':
             {
                 long long num;
-                cout << "Введите целое число: ";
+                cout << "Введите целое число num=";
                 cin >> num;
-                cout << "Количество знаков: " << order(num) << "\n";
+                cout << "Количество знаков: " << order(num) << endl;
                 break;
             }
 
@@ -106,30 +126,30 @@ int main()
                 char symbol;
                 cout << "Введите символ: ";
                 cin >> symbol;
-                cout << "Код символа: " << getLetterCode(symbol) << "\n";
+                cout << "Код символа: " << getLetterCode(symbol) << endl;
                 break;
             }
 
         case 'p':
             {
                 int num;
-                cout << "Введите целое число: ";
+                cout << "Введите целое число num=";
                 cin >> num;
-                cout << (isPrime(num) ? "Простое" : "Не простое") << "\n";
+                cout << (isPrime(num) ? "Простое" : "Не простое") << endl;
                 break;
             }
 
         case 'a':
             {
-                cout << "=== Тестовые сценарии ===\n";
+                cout << "=== Тестовые сценарии ===" << endl;
                 cout << "belongsToInterval(5,1,10): "
-                    << belongsToInterval(5, 1, 10) << "\n";
-                cout << "minValue(3,7): " << minValue(3, 7) << "\n";
+                    << belongsToInterval(5, 1, 10) << endl;
+                cout << "minValue(3,7): " << minValue(3, 7) << endl;
                 cout << "minValue(2.5f,1.5f): "
-                    << minValue(2.5f, 1.5f) << "\n";
+                    << minValue(2.5f, 1.5f) << endl;
                 cout << "order(-2147483648): "
-                    << order(INT_MIN) << "\n";
-                cout << "isPrime(29): " << isPrime(29) << "\n";
+                    << order(INT_MIN) << endl;
+                cout << "isPrime(29): " << isPrime(29) << endl;
                 break;
             }
 
@@ -182,19 +202,19 @@ void showTypeInfo()
 {
     cout << "char: size=" << sizeof(char)
         << " min=" << CHAR_MIN
-        << " max=" << CHAR_MAX << "\n";
+        << " max=" << CHAR_MAX << endl;
     cout << "short: size=" << sizeof(short)
         << " min=" << SHRT_MIN
-        << " max=" << SHRT_MAX << "\n";
+        << " max=" << SHRT_MAX << endl;
     cout << "int: size=" << sizeof(int)
         << " min=" << INT_MIN
-        << " max=" << INT_MAX << "\n";
+        << " max=" << INT_MAX << endl;
     cout << "long: size=" << sizeof(long)
         << " min=" << LONG_MIN
-        << " max=" << LONG_MAX << "\n";
+        << " max=" << LONG_MAX << endl;
     cout << "long long: size=" << sizeof(long long)
         << " min=" << LLONG_MIN
-        << " max=" << LLONG_MAX << "\n";
+        << " max=" << LLONG_MAX << endl;
 }
 
 // Функция получения числового кода символа
@@ -213,6 +233,19 @@ bool isPrime(int n)
     for (int i = 3; i < n; i += 2)
     {
         if (n % i == 0) return false;
+    }
+    return true;
+}
+
+// Функция проверки корректности ввода
+bool isValidInput()
+{
+    if (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(256, '\n');
+        cout << "Некорректный ввод. Попробуйте снова." << endl;
+        return false;
     }
     return true;
 }
